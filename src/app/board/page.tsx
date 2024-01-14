@@ -80,6 +80,7 @@ function Board() {
     const [dotted, setDotted] = useState(true)
     const [eraserIndex, setEraserIndex] = useState({ x: 0, y: 0 })
     const [pointerMap, setPointerMap] = useState<any>({})
+    const [strokes, setStrokes] = useState<any>([])
 
     const strokeWidth = [1, 2.5, 4]
 
@@ -189,6 +190,7 @@ function Board() {
         return () => {
             socket?.disconnect()
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentRoom])
 
     useEffect(() => {
@@ -339,6 +341,8 @@ function Board() {
             eraserRadius
         })
 
+        setStrokes([...strokes, [ clientX, clientY ]]);
+
         if (selected[1]) {
             setIsDrawing(true)
             contextRef.current?.beginPath();
@@ -383,7 +387,11 @@ function Board() {
         const { clientX, clientY } = nativeEvent;
     
         if (lastPoint.current == null) return;
-    
+
+        let strokesCurrent = strokes;
+        strokesCurrent[strokesCurrent.length - 1].push(clientX, clientY);
+        setStrokes(strokesCurrent);
+
         if (selected[2]) {
             eraseWithContinuousDots(clientX, clientY, eraserRadius);
             lastPoint.current = { x: clientX, y: clientY };
@@ -506,7 +514,7 @@ function Board() {
                 </div>
             )}
             {Object.keys(pointerMap).map((username, indices) => (
-                <div key={indices} className="absolute" style={{
+                <div key={username} className="absolute" style={{
                     pointerEvents: 'none',
                     left: `${pointerMap[username].x - 10}px`,
                     top: `${pointerMap[username].y - 10}px`,

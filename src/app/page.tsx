@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useRouter } from "next/navigation";
 import Bubble from "@/user-components/bubble";
+import { useTheme } from "next-themes";
 
 export default function Home() {
   const [user, setUser] = useState<any>(null)
@@ -176,16 +177,22 @@ export default function Home() {
     )
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  let theme = useTheme().theme;
+  console.log(theme);
+  if (theme === 'system')
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="absolute left-[30%] top-1/2 z-10">
-        <Bubble size={100} speed={150}/>
+        <Bubble size={100} speed={80} theme={theme || "dark"}/>
       </div>
       <div className="absolute right-[20%] top-[10%]">
-        <Bubble size={60} speed={50}/>
+        <Bubble size={60} speed={50} theme={theme || "dark"}/>
       </div>
       <div className="absolute right-[25%] bottom-[20%]">
-        <Bubble size={80} speed={50}/>
+        <Bubble size={80} speed={60} theme={theme || "dark"}/>
       </div>
       {showAlert && <Alert variant={alertTitle === "Error" ? "destructive" : "default"} className="absolute bottom-5 left-50 w-52">
         <AlertTitle>{alertTitle}</AlertTitle>

@@ -21,6 +21,7 @@ const rotateAfter = keyframes`
 type BubbleContainerProps = {
   size: number;
   speed: number;
+  colors: string[];
 };
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
@@ -66,8 +67,13 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   }
 `;
 
-function Bubble({ size, speed }: { size: number, speed: number }) {
-  return <BubbleContainer size={size} speed={speed}></BubbleContainer>;
+function Bubble({ size, speed, theme }: { size: number, speed: number, theme: string }) {
+  const lightThemeColor = ['hsl(0, 0%, 71%)', 'hsl(0, 0%, 81%)', 'hsl(0, 0%, 51%)', 'hsl(0, 0%, 61%)', 'hsl(0, 0%, 31%)', 'hsl(0, 0%, 41%)'];
+  const darkThemeColor = ['hsl(0, 0%, 29%)', 'hsl(0, 0%, 39%)', 'hsl(0, 0%, 9%)', 'hsl(0, 0%, 19%)', 'hsl(0, 0%, 9%)', 'hsl(0, 0%, 19%)'];
+
+  const themeColor = theme === 'light' ? lightThemeColor : darkThemeColor;
+
+  return <BubbleContainer size={size} speed={speed} colors={themeColor}></BubbleContainer>;
 }
 
 export default Bubble;

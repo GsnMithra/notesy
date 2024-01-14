@@ -17,6 +17,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithP
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useRouter } from "next/navigation";
+import Bubble from "@/user-components/bubble";
 
 export default function Home() {
   const [user, setUser] = useState<any>(null)
@@ -177,6 +178,15 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="absolute left-[30%] top-1/2">
+        <Bubble size={100}/>
+      </div>
+      <div className="absolute right-[20%] top-[10%]">
+        <Bubble size={60}/>
+      </div>
+      <div className="absolute right-[20%] bottom-[20%]">
+        <Bubble size={80}/>
+      </div>
       {showAlert && <Alert variant={alertTitle === "Error" ? "destructive" : "default"} className="absolute bottom-5 left-50 w-52">
         <AlertTitle>{alertTitle}</AlertTitle>
         <AlertDescription>
@@ -184,12 +194,12 @@ export default function Home() {
         </AlertDescription>
       </Alert>}
       {modeSignIn && (
-        <Card className="max-w-[400px] p-3 gap-3">
+        <Card className="max-w-[400px] p-3 gap-3 z-10">
           <CardHeader className="flex gap-3">
             <h1 className="text-7xl font-bold">noʊtsi</h1>
           </CardHeader>
           <Divider />
-          <CardBody className="flex gap-3 items-center justify-center">
+          <CardBody className="flex gap-3 items-center justify-center z-1">
             <Input
               type="email"
               label="Email"
@@ -265,7 +275,7 @@ export default function Home() {
         </Card>
       )}
       {!modeSignIn && (
-        <Card className="max-w-[400px] p-3 gap-3">
+        <Card className="max-w-[400px] p-3 gap-3 z-10">
           <CardHeader className="flex gap-3">
             <h1 className="text-7xl font-bold">noʊtsi</h1>
           </CardHeader>

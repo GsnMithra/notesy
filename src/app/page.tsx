@@ -194,7 +194,7 @@ export default function Home() {
       <div className="absolute right-[25%] bottom-[20%]">
         <Bubble size={80} speed={60} theme={theme || "dark"}/>
       </div>
-      {showAlert && <Alert variant={alertTitle === "Error" ? "destructive" : "default"} className="absolute bottom-5 left-50 w-52">
+      {showAlert && <Alert variant="default" className="absolute bottom-5 left-50 w-52 z-10">
         <AlertTitle>{alertTitle}</AlertTitle>
         <AlertDescription>
           {alertDetails}

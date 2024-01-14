@@ -178,14 +178,14 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="absolute left-[30%] top-1/2">
-        <Bubble size={100}/>
+      <div className="absolute left-[30%] top-1/2 z-10">
+        <Bubble size={100} speed={150}/>
       </div>
       <div className="absolute right-[20%] top-[10%]">
-        <Bubble size={60}/>
+        <Bubble size={60} speed={50}/>
       </div>
-      <div className="absolute right-[20%] bottom-[20%]">
-        <Bubble size={80}/>
+      <div className="absolute right-[25%] bottom-[20%]">
+        <Bubble size={80} speed={50}/>
       </div>
       {showAlert && <Alert variant={alertTitle === "Error" ? "destructive" : "default"} className="absolute bottom-5 left-50 w-52">
         <AlertTitle>{alertTitle}</AlertTitle>
@@ -194,7 +194,7 @@ export default function Home() {
         </AlertDescription>
       </Alert>}
       {modeSignIn && (
-        <Card className="max-w-[400px] p-3 gap-3 z-10">
+        <Card className="max-w-[400px] p-3 gap-3 z-20">
           <CardHeader className="flex gap-3">
             <h1 className="text-7xl font-bold">noʊtsi</h1>
           </CardHeader>
@@ -275,7 +275,7 @@ export default function Home() {
         </Card>
       )}
       {!modeSignIn && (
-        <Card className="max-w-[400px] p-3 gap-3 z-10">
+        <Card className="max-w-[400px] p-3 gap-3 z-20">
           <CardHeader className="flex gap-3">
             <h1 className="text-7xl font-bold">noʊtsi</h1>
           </CardHeader>

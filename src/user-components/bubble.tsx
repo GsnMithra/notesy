@@ -20,11 +20,12 @@ const rotateAfter = keyframes`
 
 type BubbleContainerProps = {
   size: number;
+  speed: number;
 };
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
   --size: ${(props) => props.size + 'rem'};
-  --speed: 35s; /* Add this line with a default value */
+  --speed: ${(props) => props.speed + 's'}; /* Add this line with a default value */;
   width: var(--size);
   height: var(--size);
   background: hsl(0, 0%, 71%);
@@ -65,8 +66,8 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   }
 `;
 
-function Bubble({ size }: { size: number }) {
-  return <BubbleContainer size={size}></BubbleContainer>;
+function Bubble({ size, speed }: { size: number, speed: number }) {
+  return <BubbleContainer size={size} speed={speed}></BubbleContainer>;
 }
 
 export default Bubble;

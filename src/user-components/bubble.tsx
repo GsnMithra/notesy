@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const rotate = keyframes`
@@ -25,6 +24,7 @@ type BubbleContainerProps = {
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
   --size: ${(props) => props.size + 'rem'};
+  --speed: 35s; /* Add this line with a default value */
   width: var(--size);
   height: var(--size);
   background: hsl(0, 0%, 71%);
@@ -34,7 +34,7 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   left: calc(50% - (var(--size) * 0.49));
   overflow: visible;
   border-radius: 48% 40% 62% 47% / 61% 49% 64% 43%;
-  animation: ${rotate} var(--speed) infinite linear;
+  animation: ${rotate} var(--speed) infinite linear; /* Reference --speed here */
   z-index: 1;
 
   &:before {
@@ -48,7 +48,7 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
     border: calc(var(--size) * 0.065) solid hsl(0, 0%, 61%);
     border-radius: 41% 40% 50% 55% / 49% 52% 51% 43%;
     z-index: -2;
-    animation: ${rotateBefore} var(--speed) infinite linear;
+    animation: ${rotateBefore} var(--speed) infinite linear; /* Reference --speed here */
   }
 
   &:after {
@@ -61,7 +61,7 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
     background: hsl(0, 0%, 31%);
     border: calc(var(--size) * 0.05) solid hsl(0, 0%, 41%);
     border-radius: 42% 63% 51% 60% / 47% 62% 42% 52%;
-    animation: ${rotateAfter} var(--speed) infinite linear;
+    animation: ${rotateAfter} var(--speed) infinite linear; /* Reference --speed here */
   }
 `;
 

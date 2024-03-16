@@ -23,8 +23,6 @@ type BubbleContainerProps = {
   speed: number;
 };
 
-
-
 function Bubble({ size, speed, theme }: { size: number, speed: number, theme: string }) {
   const lightThemeColor = ['hsl(0, 0%, 71%)', 'hsl(0, 0%, 81%)', 'hsl(0, 0%, 51%)', 'hsl(0, 0%, 61%)', 'hsl(0, 0%, 31%)', 'hsl(0, 0%, 41%)'];
   const darkThemeColor = ['hsl(0, 0%, 28%)', 'hsl(0, 0%, 33%)', 'hsl(0, 0%, 19%)', 'hsl(0, 0%, 22%)', 'hsl(0, 0%, 5%)', 'hsl(0, 0%, 15%)'];
